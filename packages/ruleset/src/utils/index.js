@@ -9,6 +9,8 @@ const mergeAllOfSchemaProperties = require('./merge-allof-schema-properties');
 const pathMatchesRegexp = require('./path-matches-regexp');
 const validateSubschemas = require('./validate-subschemas');
 
+const operationMethods = require('./constants');
+
 module.exports = {
   checkCompositeSchemaForConstraint,
   checkCompositeSchemaForProperty,
@@ -18,6 +20,7 @@ module.exports = {
   isObject,
   isSdkExcluded,
   mergeAllOfSchemaProperties,
+  operationMethods,
   pathMatchesRegexp,
   validateSubschemas
 };
