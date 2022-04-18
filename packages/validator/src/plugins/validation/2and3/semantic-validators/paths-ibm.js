@@ -4,6 +4,7 @@
 // Assertation 2. All path parameters must be defined at either the path or operation level.
 
 // Assertation 3. All path segments are lower snake case
+// [Removed]
 
 // Assertation 4:
 // Identical path parameters should be defined at path level rather than in the operations
@@ -12,8 +13,6 @@ const flatten = require('lodash/flatten');
 const isEqual = require('lodash/isEqual');
 const uniqWith = require('lodash/uniqWith');
 const MessageCarrier = require('../../../utils/message-carrier');
-
-const { checkCase } = require('../../../utils');
 
 const allowedOperations = [
   'get',
@@ -131,54 +130,6 @@ module.exports.validate = function({ resolvedSpec }, config) {
             }
           }
         });
-      }
-    }
-
-    // enforce path segments are lower snake case
-    const checkStatus = config.snake_case_only;
-    if (checkStatus != 'off') {
-      const segments = pathName.split('/');
-      segments.forEach(segment => {
-        // the first element will be "" since pathName starts with "/"
-        // also, ignore validating the path parameters
-        if (segment === '' || segment[0] === '{') {
-          return;
-        }
-        if (!checkCase(segment, 'lower_snake_case')) {
-          messages.addMessage(
-            ['paths', pathName],
-            `Path segments must be lower snake case.`,
-            checkStatus,
-            'snake_case_only'
-          );
-        }
-      });
-    } else {
-      // in the else block because usage of paths_case_convention is mutually
-      // exclusive with usage of config.snake_case_only since it is overlapping
-      // functionality
-      if (config.paths_case_convention) {
-        const checkStatusPath = config.paths_case_convention[0];
-        if (checkStatusPath !== 'off') {
-          const caseConvention = config.paths_case_convention[1];
-          const segments = pathName.split('/');
-          segments.forEach(segment => {
-            // the first element will be "" since pathName starts with "/"
-            // also, ignore validating the path parameters
-            if (segment === '' || segment[0] === '{') {
-              return;
-            }
-            const isCorrectCase = checkCase(segment, caseConvention);
-            if (!isCorrectCase) {
-              messages.addMessage(
-                ['paths', pathName],
-                `Path segments must follow case convention: ${caseConvention}`,
-                checkStatusPath,
-                'paths_case_convention'
-              );
-            }
-          });
-        }
       }
     }
   });

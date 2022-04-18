@@ -24,8 +24,6 @@ const defaults = {
     },
     'paths': {
       'duplicate_path_parameter': 'warning',
-      'snake_case_only': 'off',
-      'paths_case_convention': ['error', 'lower_snake_case']
     },
     'responses': {
       'inline_response_schema': 'warning'
@@ -102,6 +100,8 @@ const deprecated = {
   'no_array_responses': 'array-responses (spectral rule)',
   'parameter_order': 'parameter-order (spectral rule)',
   'missing_path_parameter': 'path-params and path-declarations-must-exist (spectral rule)',
+  'paths.snake_case_only': 'path-segment-case-convention (spectral rule)',
+  'paths_case_convention': 'path-segment-case-convention (spectral rule)',
 };
 
 const configOptions = {
