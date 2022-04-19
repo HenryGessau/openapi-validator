@@ -28,7 +28,6 @@ const defaults = {
       'paths_case_convention': ['error', 'lower_snake_case']
     },
     'responses': {
-      'inline_response_schema': 'warning'
     },
     'schemas': {
       'invalid_type_format_pair': 'error'
@@ -102,6 +101,7 @@ const deprecated = {
   'no_array_responses': 'array-responses (spectral rule)',
   'parameter_order': 'parameter-order (spectral rule)',
   'missing_path_parameter': 'path-params and path-declarations-must-exist (spectral rule)',
+  'inline_response_schema': 'inline-response-schema (spectral rule)'
 };
 
 const configOptions = {
